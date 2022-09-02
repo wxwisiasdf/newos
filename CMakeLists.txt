@@ -14,7 +14,17 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/util_libs")
 find_package(util_libs REQUIRED)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_libs")
 find_package(seL4_libs REQUIRED)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/sel4runtime")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_tools/cmake-tool")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_tools/cmake-tool/helpers")
 
+set(KERNEL_HELPERS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4/tools/helpers.cmake")
+set(KERNEL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4")
+set(KernelArch "x86")
+set(KernelWordSize 64)
+set(KernelArchX86 TRUE)
+set(KernelSel4Arch "x86_64")
+set(KernelSel4ArchX86_64 TRUE)
 sel4_import_kernel()
 
 # This sets up environment build flags and imports musllibc and runtime libraries.
@@ -24,7 +34,7 @@ util_libs_import_libraries()
 sel4_libs_import_libraries()
 
 # Name the executable and list source files required to build it
-add_executable(hello-world src/main.c)
+add_executable(hello-world hello-world/main.c)
 
 # List of libraries to link with the application.
 target_link_libraries(hello-world

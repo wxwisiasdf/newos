@@ -10,3 +10,9 @@
 [submodule "seL4_libs"]
 	path = seL4_libs
 	url = https://github.com/seL4/seL4_libs
+[submodule "sel4runtime"]
+	path = sel4runtime
+	url = https://github.com/seL4/sel4runtime
+[submodule "seL4_tools"]
+	path = seL4_tools
+	url = https://github.com/seL4/seL4_tools
