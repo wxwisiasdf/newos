@@ -1,4 +1,4 @@
-#include(${CMAKE_CURRENT_SOURCE_DIR}/kernel/settings.cmake)
+include("${CMAKE_CURRENT_SOURCE_DIR}/settings.cmake")
 
 cmake_minimum_required(VERSION 3.7.2)
 # declare the hello-world CMake project and the languages it is written in (just C)
@@ -6,27 +6,12 @@ project(hello-world C ASM)
 
 # In future tutorials, these setup steps will be replaced with
 # sel4_tutorials_setup_roottask_tutorial_environment()
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4")
 find_package(seL4 REQUIRED)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/musllibc")
 find_package(musllibc REQUIRED)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/util_libs")
 find_package(util_libs REQUIRED)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_libs")
 find_package(seL4_libs REQUIRED)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/sel4runtime")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_tools/cmake-tool")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4_tools/cmake-tool/helpers")
 
-set(KERNEL_HELPERS_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4/tools/helpers.cmake")
-set(KERNEL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/seL4")
-set(KernelArch "x86")
-set(KernelWordSize 64)
-set(KernelArchX86 TRUE)
-set(KernelSel4Arch "x86_64")
-set(KernelSel4ArchX86_64 TRUE)
 sel4_import_kernel()
-
 # This sets up environment build flags and imports musllibc and runtime libraries.
 musllibc_setup_build_environment_with_sel4runtime()
 sel4_import_libsel4()
